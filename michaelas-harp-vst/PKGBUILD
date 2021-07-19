@@ -1,0 +1,22 @@
+pkgname=michaelas-harp-vst
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Michaelas Harp"
+arch=('x86_64')
+url="https://librewave.com/product/michaelas-harp/"
+license=('EULA')
+groups=('pro-audio' 'vst-plugins')
+depends=('glibc' 'libcurl-gnutls')
+makedepends=('xdg-user-dirs')
+
+prepare () {
+	## Extract Kazbek VST
+	ln -srf `xdg-user-dir DOWNLOAD`/Michaelas\ Harp\ ${pkgver}.sh "$srcdir/Michaelas\ Harp\ ${pkgver}.sh"
+	sh "$srcdir/Michaelas\ Harp\ ${pkgver}.sh" --tar xvf
+}
+
+package() {
+	## Install VST Plugins
+	install -Dm755 $srcdir/Michaelas\ Harp.so $pkgdir/usr/lib/vst/Michaelas\ Harp.so
+	install -Dm755 $srcdir/License.txt $pkgdir/usr/share/doc/michaelas-harp/LICENSE
+}

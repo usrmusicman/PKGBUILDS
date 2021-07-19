@@ -1,0 +1,22 @@
+pkgname=kazbek-vst
+pkgver=1.0.1
+pkgrel=1
+pkgdesc="Kazbek Woodwinds"
+arch=('x86_64')
+url="https://librewave.com/product/kazbek/"
+license=('EULA')
+groups=('pro-audio' 'vst-plugins')
+depends=('glibc' 'libcurl-gnutls')
+makedepends=('xdg-user-dirs')
+
+prepare () {
+	## Extract Kazbek VST
+	ln -srf `xdg-user-dir DOWNLOAD`/Kazbek\ ${pkgver}.sh "$srcdir/Kazbek ${pkgver}.sh"
+	sh "$srcdir/Kazbek ${pkgver}.sh" --tar xvf
+}
+
+package() {
+	## Install VST Plugins
+	install -Dm755 $srcdir/Kazbek.so $pkgdir/usr/lib/vst/Kazbek.so
+	install -Dm755 $srcdir/License.txt $pkgdir/usr/share/doc/kazbek/LICENSE
+}
