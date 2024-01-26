@@ -1,0 +1,21 @@
+pkgbase = carla-bridges-win64-git
+	pkgdesc = Carla Win64 Bridge (Git)
+	pkgver = 6921.84e2e0a4b
+	pkgrel = 1
+	url = http://kxstudio.sf.net/carla
+	arch = i686
+	arch = x86_64
+	license = GPL2
+	makedepends = git
+	makedepends = mingw-w64-crt
+	makedepends = mingw-w64-gcc
+	makedepends = mingw-w64-pkg-config
+	makedepends = mingw-w64-winpthreads
+	depends = wine
+	depends = carla-git
+	provides = carla-bridges-win64
+	conflicts = carla-bridges-win64
+	source = carla-bridges-win64-git::git+https://github.com/falkTX/Carla.git
+	md5sums = SKIP
+
+pkgname = carla-bridges-win64-git
