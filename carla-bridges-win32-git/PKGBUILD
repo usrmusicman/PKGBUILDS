@@ -1,6 +1,6 @@
 # Maintainer: Joermungand <joermungand at gmail dot com>
 pkgname=carla-bridges-win32-git
-pkgver=6921.84e2e0a4b
+pkgver=6924.df1f800a3
 pkgrel=1
 pkgdesc="Carla Win32 Bridge (Git)"
 arch=('i686' 'x86_64')
