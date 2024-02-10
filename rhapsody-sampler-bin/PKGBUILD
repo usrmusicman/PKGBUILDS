@@ -1,0 +1,31 @@
+pkgbase=rhapsody-sampler
+pkgname=("$pkgbase-standalone-bin" "$pkgbase-vst3-bin")
+pkgver=2.3.3
+pkgrel=1
+arch=('x86_64')
+license=('EULA')
+url="https://librewave.com/rhapsody/"
+source=('Rhapsody Sampler.desktop')
+depends=('glibc' 'libcurl-gnutls')
+makedepends=('xdg-user-dirs' 'unzip')
+sha256sums=('819325a3c1a7035ddc95196f4680c8265947148e5a7ea46ca023d3157927002a')
+
+prepare() {
+	ln -srf "`xdg-user-dir DOWNLOAD`/Rhapsody Linux ${pkgver}.zip" "${srcdir}/Rhapsody Linux ${pkgver}.zip"
+	unzip "${srcdir}/Rhapsody Linux ${pkgver}.zip"
+}
+
+package_rhapsody-sampler-standalone-bin() {
+	pkgdesc="Rhapsody Sampler (Standalone)"
+	groups=('pro-audio')
+	install -Dm755 "${srcdir}/Rhapsody" "${pkgdir}/usr/bin/Rhapsody"
+	install -Dm755 "${srcdir}/Rhapsody Sampler.desktop" "${pkgdir}/usr/share/applications/Rhapsody Sampler.desktop"
+	install -Dm644 "${srcdir}/Icon.png" "${pkgdir}/usr/share/icons/hicolor/458x458/apps/rhapsody-sampler.png"
+	install -Dm644 "${srcdir}/License.txt" "${pkgdir}/usr/share/doc/rhapsody-sampler/license"
+}
+
+package_rhapsody-sampler-vst3-bin() {
+	pkgdesc="Rhapsody Sampler (VST3)"
+	groups=('vst3-plugins')
+	install -Dm755 "${srcdir}/Rhapsody.vst3/Contents/x86_64-linux/Rhapsody.so" "${pkgdir}/usr/lib/vst3/Rhapsody.vst3/Contents/x86_64-linux/Rhapsody.so"
+}

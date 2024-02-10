@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Rhapsody
+Comment=Librewave Multisample Sampler/Rompler
+Exec=/usr/bin/Rhapsody
+Icon=/usr/share/icons/hicolor/458x458/apps/rhapsody-sampler.png
+Terminal=false
+Categories=Audio;Video;Multimedia;
