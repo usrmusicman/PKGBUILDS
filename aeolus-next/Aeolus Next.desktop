@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Aeolus Next
+Comment=Aeolus Pipe Organ Simulation (Standalone)
+Exec="/usr/bin/Aeolus Next"
+Icon=/usr/share/icons/hicolor/64x64/apps/aeolus-next.png
+Terminal=false
+Categories=Audio;Video;Multimedia;
