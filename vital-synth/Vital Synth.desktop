@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Vital Synth
+Comment=Spectral warping wavetable synth (Standalone)
+Exec=/usr/bin/Vital
+Icon=/usr/share/icons/hicolor/256x256/apps/vital-synth.png
+Terminal=false
+Categories=Audio;Video;Multimedia;

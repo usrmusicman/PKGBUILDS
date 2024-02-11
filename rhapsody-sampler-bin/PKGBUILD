@@ -8,7 +8,7 @@ url="https://librewave.com/rhapsody/"
 source=('Rhapsody Sampler.desktop')
 depends=('glibc' 'libcurl-gnutls')
 makedepends=('xdg-user-dirs' 'unzip')
-sha256sums=('819325a3c1a7035ddc95196f4680c8265947148e5a7ea46ca023d3157927002a')
+sha256sums=('dd2771eb2c3ad7270c4a28cb4bda9810d28035546780fe2a1b26a7ab97045016')
 
 prepare() {
 	ln -srf "`xdg-user-dir DOWNLOAD`/Rhapsody Linux ${pkgver}.zip" "${srcdir}/Rhapsody Linux ${pkgver}.zip"
@@ -26,6 +26,6 @@ package_rhapsody-sampler-standalone-bin() {
 
 package_rhapsody-sampler-vst3-bin() {
 	pkgdesc="Rhapsody Sampler (VST3)"
-	groups=('vst3-plugins')
+	groups=('pro-audio' 'vst3-plugins')
 	install -Dm755 "${srcdir}/Rhapsody.vst3/Contents/x86_64-linux/Rhapsody.so" "${pkgdir}/usr/lib/vst3/Rhapsody.vst3/Contents/x86_64-linux/Rhapsody.so"
 }

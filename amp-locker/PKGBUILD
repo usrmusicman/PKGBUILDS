@@ -1,0 +1,41 @@
+pkgbase=amp-locker
+pkgname=('amp-locker-standalone-bin' 'amp-locker-vst-bin' 'amp-locker-vst3-bin')
+pkgver=1.0.8
+pkgrel=1
+arch=('x86_64')
+url="https://audioassault.mx/collections/amp-locker-gear/products/amp-locker"
+license=('EULA')
+groups=('pro-audio' 'vst-plugins' 'vst3-plugins')
+depends=('libcurl-gnutls' 'glibc')
+makedepends=('xdg-user-dirs' 'unzip')
+source=("Amp Locker.desktop" 'Amp Locker Linker')
+sha256sums=('98c5bff17eceea2402bd5c2eaa9b1939073c50feffe6ea3153807dbba11a3f80'
+            '7da21164bcbe6301bdccd6c2cab557efe8c882d2522a1f9788fb1dad5fefc2b5')
+
+prepare () {
+	## Extract AIR Impulse Response
+	_archive="`xdg-user-dir DOWNLOAD`/Amp+Locker+Linux.zip"
+	ln -srf "${_archive}" "$srcdir/`basename "${_archive}"`"
+	unzip "$srcdir/`basename "${_archive}"`"
+	find $srcdir -name ".DS_Store" -delete
+}
+
+package_amp-locker-standalone-bin() {
+    ## Install Standalone Binary
+    pkgdesc="Audio Assault Multamp Simulator (Standalone)"
+    install -Dm755 "$srcdir/Amp Locker Linker" "$pkgdir/usr/bin/Amp Locker Linker"
+    install -Dm755 "$srcdir/Amp Locker Standalone" "$pkgdir/usr/bin/Amp Locker Standalone"
+    install -Dm644 "$srcdir/Amp Locker.desktop" "$pkgdir/usr/share/applications/Amp Locker.desktop"
+}
+
+package_amp-locker-vst-bin() {
+    ## Install VST Plugin
+    pkgdesc="Audio Assault Multamp Simulator (VST)"
+    install -Dm755 "$srcdir/Amp Locker vst2.so" "$pkgdir/usr/lib/vst/Amp Locker.so"
+}
+
+package_amp-locker-vst3-bin() {
+    ## Install VST3 Plugin
+    pkgdesc="Audio Assault Multamp Simulator (VST3)"
+    install -Dm755 "$srcdir/Amp Locker.vst3/Contents/x86_64-linux/Amp Locker.so" "$pkgdir/usr/lib/vst3/Amp Locker.vst3/Contents/x86_64-linux/Amp Locker.so"
+}
