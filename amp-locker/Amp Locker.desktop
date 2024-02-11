@@ -2,7 +2,7 @@
 Type=Application
 Version=1.0
 Name=Amp Locker
-Comment=Audio Assault Multiamp Simulator
-Exec=/usr/bin/Amp Locker
+Comment=Audio Assault Multiamp Simulator (Standalone)
+Exec="/usr/bin/Amp Locker Standalone"
 Terminal=false
 Categories=Audio;Video;Multimedia;
