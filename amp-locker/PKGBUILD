@@ -10,7 +10,7 @@ depends=('libcurl-gnutls' 'glibc')
 makedepends=('xdg-user-dirs' 'unzip')
 source=("Amp Locker.desktop" 'Amp Locker Linker')
 sha256sums=('98c5bff17eceea2402bd5c2eaa9b1939073c50feffe6ea3153807dbba11a3f80'
-            '7da21164bcbe6301bdccd6c2cab557efe8c882d2522a1f9788fb1dad5fefc2b5')
+            '088a438fe8f8c045c6a6d662e55671c84d36ee6ec4ce1dee4a6b6ec3f334d559')
 
 prepare () {
 	## Extract AIR Impulse Response
