@@ -39,3 +39,4 @@ package_amp-locker-vst3-bin() {
     pkgdesc="Audio Assault Multamp Simulator (VST3)"
     install -Dm755 "$srcdir/Amp Locker.vst3/Contents/x86_64-linux/Amp Locker.so" "$pkgdir/usr/lib/vst3/Amp Locker.vst3/Contents/x86_64-linux/Amp Locker.so"
 }
+
