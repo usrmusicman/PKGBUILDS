@@ -1,7 +1,7 @@
 pkgbase=aeolus-next
 pkgname=("${pkgbase}-standalone-bin" "${pkgbase}-vst3-bin")
 pkgver=0.2.0
-pkgrel=1
+pkgrel=2
 url="https://github.com/Archie3d/aeolus_plugin"
 license=('GPL')
 arch=('x86_64')
@@ -15,7 +15,7 @@ source=("https://github.com/Archie3d/aeolus_plugin/releases/download/v${pkgver}/
 		"Aeolus Next.desktop")
 sha256sums=('fd0f8c0a7a6112ac68412301979ad934cd97afa03adbaee29a39875097a3ad06'
 			'4d2df74407d2f2fd7489bc8cd22d3fb644cdc16f4ac6a52eae1ec26ac0666417'
-			'bdfb9c0c8fc499a1fb0415725e4723d0b88d430403b96014c97a8f1117600257')
+			'84457ab146c11fa03f53a6924495c15d2df276d4a60d7fa0320596b3611c16d3')
 
 package_aeolus-next-standalone-bin() {
 	# Install Standalone App
