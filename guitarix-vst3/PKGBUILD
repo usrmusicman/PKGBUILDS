@@ -1,15 +1,15 @@
 pkgname=guitarix-vst3
 pkgver=0.1
 pkgrel=1
-pkgdesc="Guitarix Plugin Re-implementation (VST3)"
+pkgdesc="Guitarix VST3 Plugin Re-implementation (Stable)"
 arch=(x86_64)
 url="https://github.com/brummer10/guitarix.vst"
 license=(GPL2)
 groups=('pro-audio' 'vst3-plugins')
 provides=("guitarix-vst3")
 conflicts=('guitarix-vst3')
-depends=('glibc' 'libcurl-gnutls')
-makedepends=('boost' 'eigen')
+depends=('libsndfile' 'lilv' 'fftw' 'freetype2' 'glibmm' 'avahi')
+makedepends=('git' 'boost' 'eigen' 'gperf' 'intltool' 'lv2' 'waf' 'sassc' 'pkgconfig' 'webkit2gtk')
 source=("$pkgname"::"git+https://github.com/brummer10/guitarix.vst#tag=v${pkgver}")
 md5sums=('SKIP')
 
