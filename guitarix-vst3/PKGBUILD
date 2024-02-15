@@ -1,0 +1,26 @@
+pkgname=guitarix-vst3
+pkgver=0.1
+pkgrel=1
+pkgdesc="Guitarix Plugin Re-implementation (VST3)"
+arch=(x86_64)
+url="https://github.com/brummer10/guitarix.vst"
+license=(GPL2)
+groups=('pro-audio' 'vst3-plugins')
+provides=("guitarix-vst3")
+conflicts=('guitarix-vst3')
+depends=('glibc' 'libcurl-gnutls')
+makedepends=('boost' 'eigen')
+source=("$pkgname"::"git+https://github.com/brummer10/guitarix.vst#tag=v${pkgver}")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/$pkgname
+  git submodule init
+  git submodule update
+  make -j$(nproc)
+}
+
+package() {
+  cd $srcdir/$pkgname
+  make JUCE_VST3DESTDIR="$pkgdir/usr/lib/vst3" install
+}
