@@ -1,13 +1,13 @@
 pkgbase=vital-synth
 pkgname=("${pkgbase}-standalone-bin" "${pkgbase}-clap-bin" "${pkgbase}-vst-bin" "${pkgbase}-vst3-bin")
 pkgver=1.5.5
-pkgrel=2
+pkgrel=3
 arch=('x86_64')
 url="https://vital.audio"
 license=('custom')
 provides=('vital-synth')
 makedepends=("unzip")
-depends=('glibc' 'libcurl-gnutls')
+depends=('alsa-lib' 'bzip2' 'brotli' 'freetype2' 'glibc' 'graphite' 'harfbuzz' 'krb5' 'libpng' 'libxau' 'libxext' 'libice' 'libsm' 'libxcb' 'libx11' 'pcre2' 'util-linux-libs' 'zlib')
 source=('Vital Synth.desktop' 'vital-synth.png')
 sha256sums=('821df7c83276bf54e0826e8059fa6417c959821e9e2b9b01d479079e1c4751a3'
             '905b2696b7ca634707629433f5d17d2f35b55594e3a63e4a767c17e3d7865f57')

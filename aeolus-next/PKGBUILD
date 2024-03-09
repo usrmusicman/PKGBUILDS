@@ -1,14 +1,13 @@
 pkgbase=aeolus-next
 pkgname=("${pkgbase}-standalone-bin" "${pkgbase}-vst3-bin")
 pkgver=0.2.0
-pkgrel=2
+pkgrel=3
 url="https://github.com/Archie3d/aeolus_plugin"
 license=('GPL')
 arch=('x86_64')
-depends=('glibc' 'libcurl-gnutls')
+depends=('alsa-lib' 'bzip2' 'brotli' 'freetype2' 'glibc' 'graphite' 'harfbuzz' 'libpng' 'pcre2')
 makedepends=('unzip')
 provides=("aeolus-vst3")
-# do not provide vkd3d and lib32-vkd3d intentionally: providing them may break deepin-wine apps.
 options=(!strip)
 source=("https://github.com/Archie3d/aeolus_plugin/releases/download/v${pkgver}/Aeolus-standalone-vst3-linux-${pkgver}.zip"
 		"aeolus-next.png"
@@ -30,5 +29,5 @@ package_aeolus-next-vst3-bin() {
 	# Install VST3 Plugin
 	groups=('pro-audio' 'vst3-plugins')
 	pkgdesc="Aeolus Organ Synth NEXT (VST3)"
-	install -Dm755 "$srcdir/VST3/Aeolus.vst3/Contents/x86_64-linux/Aeolus.so" "$pkgdir/usr/lib/vst3/Aeolus.vst3/Contents/x86_64-linux/Aeolus\ Next.so"
+	install -Dm755 "$srcdir/VST3/Aeolus.vst3/Contents/x86_64-linux/Aeolus.so" "$pkgdir/usr/lib/vst3/Aeolus.vst3/Contents/x86_64-linux/Aeolus Next.so"
 }

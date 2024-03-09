@@ -1,19 +1,20 @@
 pkgbase=socalabs-wavetable
 pkgname=("${pkgbase}-lv2-bin" "${pkgbase}-vst-bin" "${pkgbase}-vst3-bin")
 pkgver=1.0.21
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 url="https://socalabs.com/synths/wavetable/"
 license=('EULA')
 groups=('pro-audio')
 depends=('glibc' 'libcurl-gnutls')
-makedepends=('xdg-user-dirs' 'unzip')
+depends=('alsa-lib' 'bzip2' 'brotli' 'curl' 'freetype2' 'glibc' 'graphite' 'harfbuzz' 'keyutils' 'krb5' 'libcurl-gnutls' 'libnghttp2' 'libnghttp3' 'libidn2' 'libpng' 'libpsl' 'libssh2' 'libunistring' 'nettle' 'openssl' 'pcre2' 'zlib' 'zstd')
 source=("${pkgbase}.zip::https://socalabs.com/files/get.php?id=Wavetable_Linux.zip")
 sha256sums=('3f3f08f67b562926c6cb4b3d7029233cecd50d28213c68251f26bb10223229fd')
 
 package_socalabs-wavetable-lv2-bin() {
 	pkgdesc="Socalabs Retro Wavetable Synth (LV2)"
 	groups=('lv2-plugins')
+	depends=('lilv')
 	install -Dm644 "$srcdir/Wavetable.lv2/dsp.ttl" "$pkgdir/usr/lib/lv2/Wavetable.lv2/dsp.ttl"
 	install -Dm755 "$srcdir/Wavetable.lv2/libWavetable.so" "$pkgdir/usr/lib/lv2/Wavetable.lv2/libWavetable.so"
 	install -Dm644 "$srcdir/Wavetable.lv2/manifest.ttl" "$pkgdir/usr/lib/lv2/Wavetable.lv2/manifest.ttl"
