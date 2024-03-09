@@ -1,6 +1,6 @@
 pkgbase=socalabs-wavetable
 pkgname=("${pkgbase}-lv2-bin" "${pkgbase}-vst-bin" "${pkgbase}-vst3-bin")
-pkgver=1.0.19
+pkgver=1.0.21
 pkgrel=1
 arch=('x86_64')
 url="https://socalabs.com/synths/wavetable/"
@@ -9,7 +9,7 @@ groups=('pro-audio')
 depends=('glibc' 'libcurl-gnutls')
 makedepends=('xdg-user-dirs' 'unzip')
 source=("${pkgbase}.zip::https://socalabs.com/files/get.php?id=Wavetable_Linux.zip")
-sha256sums=('9286baa304c078a5adc5b61ed3b577baa7c10b8d597db6d49f696339c7d5f6a8')
+sha256sums=('3f3f08f67b562926c6cb4b3d7029233cecd50d28213c68251f26bb10223229fd')
 
 package_socalabs-wavetable-lv2-bin() {
 	pkgdesc="Socalabs Retro Wavetable Synth (LV2)"
