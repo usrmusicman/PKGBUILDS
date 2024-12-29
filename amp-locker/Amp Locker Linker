@@ -1,5 +1,10 @@
 #!/bin/sh
-if [ ! -d "/opt/Audio Assault/AmpLockerData" ]; then
-    pkexec --user root mkdir -p /opt/Audio\ Assault
-    pkexec --user root ln -sf /home/$USER/.config/Amp\ Locker /opt/Audio\ Assault/AmpLockerData
+home_dir_user=$USER
+
+if [ ! -d "/home/${home_dir_user}/Audio Assault/PluginData/Audio Assault/AmpLockerData" ]; then
+    mkdir -p /home/${home_dir_user}/Audio\ Assault/PluginData/Audio\ Assault
+    ln -sf /usr/lib/AmpLockerData /home/${home_dir_user}/Audio\ Assault/PluginData/Audio\ Assault/AmpLockerData
+else
+    rm -r /home/${home_dir_user}/Audio\ Assault/PluginData/Audio\ Assault/AmpLockerData
+    ln -sf /usr/lib/AmpLockerData /home/${home_dir_user}/Audio\ Assault/PluginData/Audio\ Assault/AmpLockerData
 fi
