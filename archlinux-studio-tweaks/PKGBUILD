@@ -1,5 +1,5 @@
 pkgname=archlinux-studio-tweaks
-pkgver=1.0.0
+pkgver=1.0.1
 pkgrel=1
 arch=('x86_64')
 url="https://aur.archlinux.org/packages/$pkgname"
@@ -16,7 +16,6 @@ source=("40-hpet-permissions.rules"
         "99-max_map_count.conf"
         "99-max_user_watches.conf"
         "99-swappiness.conf"
-        "btrfs_first_run.sh"
         "enable_flatpak_as_user.sh"
         "i2c-dev.conf"
         "max_rtc_timer.sh"
@@ -31,7 +30,6 @@ sha256sums=('08beea3d5594cdb9f78ad9302b6c4d8e89003a9fbd401c9f7b10f2cba23edecb'
             'c7e3887ec656c47548cf9a045c098240d314a8473660cf5c584ed3a2b43d4fcb'
             '45ac88d8ce546a42e451e31a35f36c4ecfa7483d33b156cde5c4878085bfbb29'
             'a7b7a3e68e1e38ef859c444a466276ae8859ec1aeba6c3f50faf2bbd37ca0e76'
-            '86196ebd197826e7916c91893ae4189a3d7da56d0df08ed62a0e65e116966953'
             '6aa4d21cb5ed04fb1fc95be7e4ee5931b4b6e0572b5d404c5635383c5f26fc92'
             'b5a53d747422f8b594e3e9615e238457d696732efce94050cdd72182a8645ef2'
             '7b0a0f12f12f652cbd4e468339fd6e5761b80fbdd6d0471b8d3ab75622779f8d'
@@ -65,9 +63,6 @@ package() {
 
   ## Install swapiness config
   install -Dm644 "$srcdir/99-swappiness.conf" "$pkgdir/etc/sysctl.d/99-swappiness.conf"
-
-  ## Install BTRFS first run script
-  install -Dm755 "$srcdir/btrfs_first_run.sh" "$pkgdir/etc/skel/Desktop/btrfs_first_run.sh"
 
   ## Install flatpak (user) script
   install -Dm755 "$srcdir/enable_flatpak_as_user.sh" "$pkgdir/etc/skel/Desktop/enable_flatpak_as_user.sh"
