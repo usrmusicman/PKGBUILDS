@@ -1,5 +1,5 @@
 pkgname=archlinux-studio-tweaks
-pkgver=1.0.1
+pkgver=1.0.2
 pkgrel=1
 arch=('x86_64')
 url="https://aur.archlinux.org/packages/$pkgname"
@@ -16,9 +16,9 @@ source=("40-hpet-permissions.rules"
         "99-max_map_count.conf"
         "99-max_user_watches.conf"
         "99-swappiness.conf"
-        "enable_flatpak_as_user.sh"
+        "enable_flatpak_as_user"
         "i2c-dev.conf"
-        "max_rtc_timer.sh"
+        "max_rtc_timer"
         "rtc_timer_tweak.service"
         "zram-generator.conf")
 sha256sums=('08beea3d5594cdb9f78ad9302b6c4d8e89003a9fbd401c9f7b10f2cba23edecb'
@@ -30,10 +30,10 @@ sha256sums=('08beea3d5594cdb9f78ad9302b6c4d8e89003a9fbd401c9f7b10f2cba23edecb'
             'c7e3887ec656c47548cf9a045c098240d314a8473660cf5c584ed3a2b43d4fcb'
             '45ac88d8ce546a42e451e31a35f36c4ecfa7483d33b156cde5c4878085bfbb29'
             'a7b7a3e68e1e38ef859c444a466276ae8859ec1aeba6c3f50faf2bbd37ca0e76'
-            '6aa4d21cb5ed04fb1fc95be7e4ee5931b4b6e0572b5d404c5635383c5f26fc92'
+            '8bc6e94dfc7052134abf00ed471cf6ad14b08756a703f6a3f7a4df7ca1edbc55'
             'b5a53d747422f8b594e3e9615e238457d696732efce94050cdd72182a8645ef2'
             '7b0a0f12f12f652cbd4e468339fd6e5761b80fbdd6d0471b8d3ab75622779f8d'
-            '969db5e4a561ec03f3996d057b8281fddf4a04fe013de4c2baba91467b895206'
+            'e434c5d7715b4732f534f2e356d29880dc8ac30343ce1edf967b1410495df26f'
             '231ab5d22f2dd7341541f6295cabbc9e9d4f50e06418f2f60703090a44b1eff9')
 
 package() {
@@ -65,13 +65,13 @@ package() {
   install -Dm644 "$srcdir/99-swappiness.conf" "$pkgdir/etc/sysctl.d/99-swappiness.conf"
 
   ## Install flatpak (user) script
-  install -Dm755 "$srcdir/enable_flatpak_as_user.sh" "$pkgdir/etc/skel/Desktop/enable_flatpak_as_user.sh"
+  install -Dm755 "$srcdir/enable_flatpak_as_user" "$pkgdir/usr/bin/enable_flatpak_as_user"
 
   ## Install i2c-dev config
   install -Dm644 "$srcdir/i2c-dev.conf" "$pkgdir/etc/modules-load.d/i2c-dev.conf"
 
   ## Install rtc timer tweak script
-  install -Dm755 "$srcdir/max_rtc_timer.sh" "$pkgdir/usr/bin/max_rtc_timer.sh"
+  install -Dm755 "$srcdir/max_rtc_timer" "$pkgdir/usr/bin/max_rtc_timer"
 
   ## Install rtc timer tweaks config
   install -Dm644 "$srcdir/rtc_timer_tweak.service" "$pkgdir/etc/systemd/system/rtc_timer_tweak.service"
