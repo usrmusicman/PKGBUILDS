@@ -1,23 +1,18 @@
-pkgname=archlinux-studio-utils
-pkgver=r48.a179ba6
+pkgname=pipewire-control-center
+pkgver=1.0.0
 pkgrel=1
 arch=('x86_64')
-url="https://github.com/usrmusicman/ArchLinuxStudioUtils"
+url="https://github.com/usrmusicman/PKGBUILDS"
 license=('EULA')
 depends=('cpupower' 'pipewire' 'pipewire-jack')
 optdepnds=('kdialog: A utility for displaying dialog boxes from shell scripts'
           'zenity: Display graphical dialog boxes from shell scripts')
-provides=('archlinux-studio-utils-cpufreq-scaling' 'archlinux-studio-utils-pipewire')
-conflicts=('archlinux-studio-utils-cpufreq-scaling' 'archlinux-studio-utils-pipewire')
 makedepends=('git')
 pkgdesc="Pipewire and AV application control"
-source=("$pkgname"::"git+https://github.com/usrmusicman/ArchLinuxStudioUtils")
-sha256sums=('SKIP')
-
-pkgver() {
-  cd "$pkgbase"
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
-}
+source=("Pipewire Control Center.desktop"
+        "pipewire_control_center")
+sha256sums=('f7db1b808aed05d0501414a3519aae10a0c9516af8a51941575a636d6adf68b2'
+            '67ccb89b96493f7271ab7267fa51afaa385340a53c066ed55a633fd1aeace436')
 
 package() {
     ## Install Script

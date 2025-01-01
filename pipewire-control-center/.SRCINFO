@@ -1,0 +1,17 @@
+pkgbase = pipewire-control-center
+	pkgdesc = Pipewire and AV application control
+	pkgver = 1.0.0
+	pkgrel = 1
+	url = https://github.com/usrmusicman/PKGBUILDS
+	arch = x86_64
+	license = EULA
+	makedepends = git
+	depends = cpupower
+	depends = pipewire
+	depends = pipewire-jack
+	source = Pipewire Control Center.desktop
+	source = pipewire_control_center
+	sha256sums = f7db1b808aed05d0501414a3519aae10a0c9516af8a51941575a636d6adf68b2
+	sha256sums = 67ccb89b96493f7271ab7267fa51afaa385340a53c066ed55a633fd1aeace436
+
+pkgname = pipewire-control-center
