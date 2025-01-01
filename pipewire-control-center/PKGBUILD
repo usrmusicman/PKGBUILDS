@@ -16,8 +16,8 @@ sha256sums=('f7db1b808aed05d0501414a3519aae10a0c9516af8a51941575a636d6adf68b2'
 
 package() {
     ## Install Script
-    install -Dm755 "$pkgbase/pipewire/script/pipewire_control_center" "$pkgdir/usr/bin/pipewire_control_center"
+    install -Dm755 "${srcdir}/pipewire_control_center" "$pkgdir/usr/bin/pipewire_control_center"
 
     ## Install Menu Entries
-    install -Dm644 "$pkgbase/pipewire/menu_entry/Pipewire Control Center.desktop" "$pkgdir/usr/share/applications/Pipewire Control Center.desktop"
+    install -Dm644 "${srcdir}/Pipewire Control Center.desktop" "$pkgdir/usr/share/applications/Pipewire Control Center.desktop"
 }
