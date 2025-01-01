@@ -1,0 +1,258 @@
+#!/bin/sh
+
+# Dependencies: pipewire-jack cpupower
+
+## KDialog Prompts
+
+kde_cpu_gov() {
+    CPU_GOVERNOR_CHOICE=`kdialog --combobox "Choose CPU Governor" ${CPU_GOVERNORS[@]}`
+}
+
+kde_greetings() {
+    AV_OPTIONS_SELECT=`kdialog --combobox "Select a pipewire session control option" "Change CPU Governor" "Change Session Quantum" "Exit"`
+}
+
+kde_pipewire_session() {
+    AUDIO_BUFFER=`kdialog --combobox "Select an audio buffer" "default" "16" "24" "32" "48" "64" "96" "128" "192" "256" "384" "512" "768" "1024" "2048" "4096" "8192"`
+    AUDIO_SAMPLE_RATE=`kdialog --combobox "Select a samplerate" "default" "44100" "48000" "88200" "96000" "192000"`
+}
+
+## Zenity Prompts
+
+zenity_cpu_gov() {
+    CPU_GOVERNOR_CHOICE=`zenity --list --title="Choose CPU Governor" --column="Options" ${CPU_GOVERNORS[@]}`
+}
+
+zenity_greetings() {
+    AV_OPTIONS_SELECT=`zenity --list --title="Pipewire Control Center" --column="Options" "Change CPU Governor" "Change Session Quantum" "Exit"`
+}
+
+zenity_pipewire_session() {
+    AUDIO_BUFFER=`zenity --list --title="Select An Audio Buffer" --column="Options" "default" "16" "24" "32" "48" "64" "96" "128" "192" "256" "384" "512" "768" "1024" "2048" "4096" "8192"`
+    AUDIO_SAMPLE_RATE=`zenity --list --title="Select A Samplerate" --column="Options" "default" "44100" "48000" "88200" "96000" "192000"`
+}
+
+## Program Logic
+
+list_cpu_gov_logic() {
+    ## Set CPUs variables
+    LIST_GOVERNORS=`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors`
+    EMPTY_CHARACTER_LENGTH=`grep -o " " <<< "$LIST_GOVERNORS" | wc -l`
+    unset CPU_GOVERNORS
+
+    # List CPU Governors
+    for (( item=1 ; item<=$(( ${EMPTY_CHARACTER_LENGTH} + 1 )) ; item++ ));
+    do
+        CPU_GOVERNORS+=(`echo $LIST_GOVERNORS | cut -d " " -f $(( $item ))`)
+    done
+}
+
+pw_session_logic() {
+    # Set audio buffer period
+    case $AUDIO_BUFFER in
+        default)
+            pw-metadata -n settings 0 clock.force-quantum 0 > /dev/null
+            ;;
+
+        16)
+            pw-metadata -n settings 0 clock.force-quantum 16 > /dev/null
+            ;;
+
+        24)
+            pw-metadata -n settings 0 clock.force-quantum 24 > /dev/null
+            ;;
+
+        32)
+            pw-metadata -n settings 0 clock.force-quantum 32 > /dev/null
+            ;;
+
+        48)
+            pw-metadata -n settings 0 clock.force-quantum 48 > /dev/null
+            ;;
+
+        64)
+            pw-metadata -n settings 0 clock.force-quantum 64 > /dev/null
+            ;;
+
+        96)
+            pw-metadata -n settings 0 clock.force-quantum 96 > /dev/null
+            ;;
+
+        128)
+            pw-metadata -n settings 0 clock.force-quantum 128 > /dev/null
+            ;;
+
+        192)
+            pw-metadata -n settings 0 clock.force-quantum 192 > /dev/null
+            ;;
+
+        256)
+            pw-metadata -n settings 0 clock.force-quantum 256 > /dev/null
+            ;;
+
+        384)
+            pw-metadata -n settings 0 clock.force-quantum 384 > /dev/null
+            ;;
+
+        512)
+            pw-metadata -n settings 0 clock.force-quantum 512 > /dev/null
+            ;;
+
+        768)
+            pw-metadata -n settings 0 clock.force-quantum 768 > /dev/null
+            ;;
+
+        1024)
+            pw-metadata -n settings 0 clock.force-quantum 1024 > /dev/null
+            ;;
+
+        2048)
+            pw-metadata -n settings 0 clock.force-quantum 2048 > /dev/null
+            ;;
+
+        4096)
+            pw-metadata -n settings 0 clock.force-quantum 4096 > /dev/null
+            ;;
+
+        8192)
+            pw-metadata -n settings 0 clock.force-quantum 8192 > /dev/null
+            ;;
+
+        *)
+            unset $AUDIO_BUFFER
+            ;;
+    esac
+
+    # Set audio samplerate for pipewire
+    case $AUDIO_SAMPLE_RATE in
+        default)
+            pw-metadata -n settings 0 clock.force-rate 0 > /dev/null
+            ;;
+
+        44100)
+            pw-metadata -n settings 0 clock.force-rate 44100 > /dev/null
+            ;;
+
+        48000)
+            pw-metadata -n settings 0 clock.force-rate 48000 > /dev/null
+            ;;
+
+        88200)
+            pw-metadata -n settings 0 clock.force-rate 88200 > /dev/null
+            ;;
+
+        96000)
+            pw-metadata -n settings 0 clock.force-rate 96000 > /dev/null
+            ;;
+
+        192000)
+            pw-metadata -n settings 0 clock.force-rate 192000 > /dev/null
+            ;;
+
+        *)
+            unset $AUDIO_SAMPLE_RATE
+            ;;
+    esac
+}
+
+set_cpu_gov_logic() {
+    # Set CPU governor
+    pkexec --user root cpupower frequency-set --governor $CPU_GOVERNOR_CHOICE
+}
+
+## Session Tray Output
+
+cpu_gov_systray() {
+    # Display a notification
+    if [[ ! -z "$CPU_GOVERNOR_CHOICE" ]]; then
+        kdialog --title "Change CPU governor" --passivepopup "Set the CPU Governor to $CPU_GOVERNOR_CHOICE." 10
+    fi
+}
+
+pw_session_systray() {
+    # Display a notification
+    if [[ ! -z "$AUDIO_BUFFER" ]] && [[ ! -z "$AUDIO_SAMPLE_RATE" ]]; then
+        kdialog --title "Pipweire settings changed" --passivepopup "Set the pipewire audio buffer period to $AUDIO_BUFFER and audio samplerate to $AUDIO_SAMPLE_RATE." 10
+    elif [[ ! -z "$AUDIO_BUFFER" ]]; then
+        kdialog --title "Pipweire settings changed" --passivepopup "Set the pipewire audio buffer period to $AUDIO_BUFFER." 10
+    elif [[ ! -z "$AUDIO_SAMPLE_RATE" ]]; then
+        kdialog --title "Pipweire settings changed" --passivepopup "Set audio samplerate to $AUDIO_SAMPLE_RATE." 10
+    fi
+}
+
+## Main Program
+
+while Loop="True";
+do
+    if [[ "$XDG_SESSION_DESKTOP" == "KDE" ]]; then
+        if [[ -x "/usr/bin/kdialog" ]]; then
+            # Greeting Message
+            kde_greetings
+
+            # Options Commands
+            if [[ "$AV_OPTIONS_SELECT" == "Change CPU Governor" ]]; then
+                list_cpu_gov_logic
+                kde_cpu_gov
+                set_cpu_gov_logic
+                cpu_gov_systray
+            elif [[ "$AV_OPTIONS_SELECT" == "Change Session Quantum" ]]; then
+                kde_pipewire_session
+                pw_session_logic
+                pw_session_systray
+            elif [[ "$AV_OPTIONS_SELECT" == "Exit" ]]; then
+                break
+            fi
+
+        elif [[ -x "/usr/bin/zenity" ]]; then
+            # Greeting Message
+            zenity_greetings
+
+            # Options Commands
+            if [[ "$AV_OPTIONS_SELECT" == "Change CPU Governor" ]]; then
+                list_cpu_gov_logic
+                zenity_cpu_gov
+                set_cpu_gov_logic
+            elif [[ "$AV_OPTIONS_SELECT" == "Change Session Quantum" ]]; then
+                zenity_pipewire_session
+                pw_session_logic
+            elif [[ "$AV_OPTIONS_SELECT" == "Exit" ]]; then
+                break
+            fi
+        fi
+    else
+        if [[ -x "/usr/bin/zenity" ]]; then
+            # Greeting Message
+            zenity_greetings
+
+            # Options Commands
+            if [[ "$AV_OPTIONS_SELECT" == "Change CPU Governor" ]]; then
+                list_cpu_gov_logic
+                zenity_cpu_gov
+                set_cpu_gov_logic
+            elif [[ "$AV_OPTIONS_SELECT" == "Change Session Quantum" ]]; then
+                zenity_pipewire_session
+                pw_session_logic
+            elif [[ "$AV_OPTIONS_SELECT" == "Exit" ]]; then
+                break
+            fi
+
+        elif [[ -x "/usr/bin/kdialog" ]]; then
+            # Greeting Message
+            kde_greetings
+
+            # Options Commands
+            if [[ "$AV_OPTIONS_SELECT" == "Change CPU Governor" ]]; then
+                list_cpu_gov_logic
+                zenity_cpu_gov
+                set_cpu_gov_logic
+                cpu_gov_systray
+            elif [[ "$AV_OPTIONS_SELECT" == "Change Session Quantum" ]]; then
+                zenity_pipewire_session
+                pw_session_logic
+                pw_session_systray
+            elif [[ "$AV_OPTIONS_SELECT" == "Exit" ]]; then
+                break
+            fi
+        fi
+    fi
+done

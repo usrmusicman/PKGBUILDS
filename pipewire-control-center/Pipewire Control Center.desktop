@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Pipewire Control Center
+Comment=Pipewire and AV application control
+Exec=/usr/bin/pipewire_control_center
+Icon=/usr/share/icons/breeze/apps/48/system-run.svg
+Categories=AudioVideo;X-AudioEditing;
+Terminal=false
+Type=Application
+Keywords=Audio;Video;Pipewire;
