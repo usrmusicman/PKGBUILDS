@@ -1,6 +1,6 @@
 pkgbase = archlinux-studio-tweaks
 	pkgdesc = Archlinux Studio Tweaks
-	pkgver = 1.0.3
+	pkgver = 1.0.4
 	pkgrel = 1
 	url = https://aur.archlinux.org/packages/archlinux-studio-tweaks
 	arch = x86_64
@@ -18,6 +18,7 @@ pkgbase = archlinux-studio-tweaks
 	source = 99-max_user_watches.conf
 	source = 99-swappiness.conf
 	source = enable_flatpak_as_user
+	source = i2c-dev.conf
 	source = zram-generator.conf
 	sha256sums = 08beea3d5594cdb9f78ad9302b6c4d8e89003a9fbd401c9f7b10f2cba23edecb
 	sha256sums = 47a57c2a2f3a9a5fef35b6ebfd1b618e1db8542d01cf06ea1e00182c0ef21496
@@ -29,6 +30,7 @@ pkgbase = archlinux-studio-tweaks
 	sha256sums = 45ac88d8ce546a42e451e31a35f36c4ecfa7483d33b156cde5c4878085bfbb29
 	sha256sums = a7b7a3e68e1e38ef859c444a466276ae8859ec1aeba6c3f50faf2bbd37ca0e76
 	sha256sums = 8bc6e94dfc7052134abf00ed471cf6ad14b08756a703f6a3f7a4df7ca1edbc55
+	sha256sums = 273f592d7f3e73ed36ae7ddfd08423304951370d844cabfe66895bca806201d4
 	sha256sums = 231ab5d22f2dd7341541f6295cabbc9e9d4f50e06418f2f60703090a44b1eff9
 
 pkgname = archlinux-studio-tweaks

@@ -1,5 +1,5 @@
 pkgname=archlinux-studio-tweaks
-pkgver=1.0.3
+pkgver=1.0.4
 pkgrel=1
 arch=('x86_64')
 url="https://aur.archlinux.org/packages/$pkgname"
@@ -17,6 +17,7 @@ source=("40-hpet-permissions.rules"
         "99-max_user_watches.conf"
         "99-swappiness.conf"
         "enable_flatpak_as_user"
+        "i2c-dev.conf"
         "zram-generator.conf")
 sha256sums=('08beea3d5594cdb9f78ad9302b6c4d8e89003a9fbd401c9f7b10f2cba23edecb'
             '47a57c2a2f3a9a5fef35b6ebfd1b618e1db8542d01cf06ea1e00182c0ef21496'
@@ -28,6 +29,7 @@ sha256sums=('08beea3d5594cdb9f78ad9302b6c4d8e89003a9fbd401c9f7b10f2cba23edecb'
             '45ac88d8ce546a42e451e31a35f36c4ecfa7483d33b156cde5c4878085bfbb29'
             'a7b7a3e68e1e38ef859c444a466276ae8859ec1aeba6c3f50faf2bbd37ca0e76'
             '8bc6e94dfc7052134abf00ed471cf6ad14b08756a703f6a3f7a4df7ca1edbc55'
+            '273f592d7f3e73ed36ae7ddfd08423304951370d844cabfe66895bca806201d4'
             '231ab5d22f2dd7341541f6295cabbc9e9d4f50e06418f2f60703090a44b1eff9')
 
 package() {
@@ -60,6 +62,9 @@ package() {
 
   ## Install flatpak (user) script
   install -Dm755 "$srcdir/enable_flatpak_as_user" "$pkgdir/usr/bin/enable_flatpak_as_user"
+  
+  ## Install i2c module config
+  install -Dm644 "$srcdir/i2c-dev.conf" "$pkgdir/etc/modules-load.d/i2c-dev.conf"
 
   ## Install zram config
   install -Dm644 "$srcdir/zram-generator.conf" "$pkgdir/etc/systemd/zram-generator.conf"
