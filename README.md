@@ -1,2 +1,2 @@
 # PKGBUILDS
-Archlinux Package Builds
+Archlinux Package Builds (64-bit only)
