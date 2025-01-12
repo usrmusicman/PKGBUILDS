@@ -1,11 +1,13 @@
 pkgname=grub-btrfs-autogenerate
-pkgver=1.0.0
+pkgver=1.0.9
 pkgrel=1
 arch=('x86_64')
 url="https://aur.archlinux.org/packages/grub-btrfs-autogenerate"
 license=('EULA')
-depends=('grub' 'grub-btrfs' 'snapper' 'systemd')
+depends=('grub' 'grub-btrfs' 'systemd')
 makedepends=('git')
+optdepends=('snapper: snapper support'
+            'timeshift: timeshift support')
 pkgdesc="Autogenerate GRUB BTRFS menu"
 source=("grub-btrfs-autogenerate.service"
         "grub-btrfs-autogenerate.timer")
